@@ -1,5 +1,7 @@
 test-results
 node_modules
+pb_data
+pb_migrations
 
 # Output
 .output

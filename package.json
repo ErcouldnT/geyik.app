@@ -40,5 +40,8 @@
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.46.1",
 		"vite": "^7.1.10"
+	},
+	"dependencies": {
+		"pocketbase": "^0.26.3"
 	}
 }
