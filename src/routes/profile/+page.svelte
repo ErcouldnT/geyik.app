@@ -36,8 +36,8 @@
 	}
 </script>
 
-<main class="flex min-h-screen flex-col items-center justify-center bg-gray-900 text-gray-100">
-	<div class="w-full max-w-md rounded bg-gray-800 p-6 shadow">
+<main class="flex flex-col items-center justify-center">
+	<div class="w-full max-w-md">
 		<h1 class="mb-6 text-center text-2xl font-semibold">Profil</h1>
 
 		{#if user?.avatar}
@@ -50,28 +50,28 @@
 
 		<p class="mb-4 text-center text-gray-400">{user?.email}</p>
 
-		<label class="mb-2 block text-sm text-gray-400">Kullanıcı Adı</label>
-		<input
-			class="mb-3 w-full rounded bg-gray-700 p-2 text-white"
-			bind:value={username}
-			placeholder="Kullanıcı adı"
-		/>
+		<!-- Username -->
+		<label class="label">
+			<span class="label-text">Kullanıcı Adı</span>
+			<input class="input" type="text" bind:value={username} placeholder="Kullanıcı adı" />
+		</label>
 
-		<label class="mb-2 block text-sm text-gray-400">Yeni Avatar (isteğe bağlı)</label>
-		<input
-			class="mb-3 w-full text-sm text-gray-300"
-			type="file"
-			accept="image/*"
-			on:change={(e) => (avatar = e.target.files[0])}
-		/>
+		<!-- Avatar File Input -->
+		<label class="label">
+			<span class="label-text">Avatar</span>
+			<input
+				class="input"
+				type="file"
+				accept="image/*"
+				on:change={(e) => (avatar = e.target.files[0])}
+			/>
+		</label>
 
-		<button on:click={updateProfile} class="w-full rounded bg-indigo-600 p-2 hover:bg-indigo-700">
+		<button on:click={updateProfile} class="mt-4 btn w-full preset-outlined-success-500">
 			Güncelle
 		</button>
 
-		<button on:click={logout} class="mt-3 w-full rounded bg-red-600 p-2 hover:bg-red-700">
-			Çıkış Yap
-		</button>
+		<button on:click={logout} class="mt-3 btn w-full preset-outlined-error-500">Çıkış Yap</button>
 
 		{#if success}
 			<p class="mt-3 text-sm text-green-400">{success}</p>

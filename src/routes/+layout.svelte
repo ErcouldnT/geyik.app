@@ -25,7 +25,7 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<main class="flex min-h-screen flex-col space-y-10">
+<main class="flex min-h-screen flex-col">
 	<Navigation />
 	{@render children()}
 </main>

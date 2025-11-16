@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { user } from '$lib/stores/user';
+	import { User as UserIcon } from '@lucide/svelte';
 </script>
 
 <nav class="flex items-center justify-between px-6 py-4">
@@ -13,8 +14,9 @@
 	</div>
 
 	{#if $user}
-		<div class="text-sm">
-			👤 {$user.username || $user.email}
+		<div class="flex items-center gap-2 text-sm">
+			<UserIcon size="16" />
+			{$user.username || $user.email}
 		</div>
 	{/if}
 </nav>

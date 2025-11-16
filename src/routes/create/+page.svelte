@@ -23,35 +23,47 @@
 	}
 </script>
 
-<main class="flex min-h-screen flex-col items-center justify-center text-gray-100">
-	<div class="w-full max-w-md rounded bg-gray-800 p-6 shadow">
-		<h1 class="mb-6 text-center text-2xl font-semibold">Yeni Sunucu Oluştur</h1>
+<main class="flex flex-col items-center justify-center">
+	<h1 class="mb-2 h1">Yeni Sunucu Oluştur</h1>
+	<p class="mb-10 opacity-50">Sunucunu birkaç saniyede oluştur.</p>
 
-		<input
-			class="mb-3 w-full rounded bg-gray-700 p-2 text-white"
-			placeholder="Sunucu Adı"
-			bind:value={name}
-		/>
+	<form class="w-full max-w-md space-y-4 p-4" on:submit|preventDefault={createServer}>
+		<fieldset class="space-y-4">
+			<!-- Sunucu Adı -->
+			<label class="label">
+				<span class="label-text">Sunucu Adı</span>
+				<input class="input" type="text" placeholder="Sunucu Adı" bind:value={name} />
+			</label>
 
-		<textarea
-			class="mb-3 w-full rounded bg-gray-700 p-2 text-white"
-			placeholder="Açıklama"
-			bind:value={description}
-		></textarea>
+			<!-- Açıklama -->
+			<label class="label">
+				<span class="label-text">Açıklama</span>
+				<textarea
+					class="textarea rounded-container"
+					rows="4"
+					placeholder="Açıklama"
+					bind:value={description}
+				></textarea>
+			</label>
 
-		<input
-			class="mb-3 w-full text-sm text-gray-300"
-			type="file"
-			accept="image/*"
-			on:change={(e) => (avatar = e.target.files[0])}
-		/>
+			<!-- Avatar -->
+			<label class="label">
+				<span class="label-text">Avatar</span>
+				<input
+					class="input"
+					type="file"
+					accept="image/*"
+					on:change={(e) => (avatar = e.target.files[0])}
+				/>
+			</label>
+		</fieldset>
 
-		<button on:click={createServer} class="w-full rounded bg-indigo-600 p-2 hover:bg-indigo-700">
-			Oluştur
-		</button>
+		<fieldset class="flex justify-end">
+			<button type="submit" class="btn preset-outlined-surface-300-700">Oluştur</button>
+		</fieldset>
 
 		{#if error}
-			<p class="mt-3 text-sm text-red-400">{error}</p>
+			<p class="mt-2 text-sm text-red-400">{error}</p>
 		{/if}
-	</div>
+	</form>
 </main>
