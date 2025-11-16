@@ -19,11 +19,5 @@ services:
     ports:
       - "8090:8090"
     volumes:
-      - ./pb_migrations:/pb/pb_migrations
-      - /DATA/AppData/geyik/pb_data:/pb/pb_data
-    command:
-      [
-        "sh",
-        "-c",
-        "pocketbase migrate up --dir /pb/pb_migrations && pocketbase serve --dir /pb/pb_data",
-      ]
+      - ./pb_migrations:/pb_migrations
+      - ./pb_data:/pb_data
