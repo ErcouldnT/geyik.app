@@ -7,37 +7,66 @@
 	let error = '';
 
 	async function login() {
+		error = '';
+
+		// Basit validation
+		if (!email || !password) {
+			error = 'E‑posta ve şifre alanları doldurulmalı.';
+			return;
+		}
+
 		try {
+			// Giriş dene
 			await pb.collection('users').authWithPassword(email, password);
-			goto('/'); // yönlendir
-		} catch (err) {
-			error = 'Giriş başarısız: ' + err.message;
+			goto('/');
+		} catch (err: any) {
+			// Kullanıcı yok veya şifre yanlış — otomatik kayıt senaryosu
+			if (err?.message?.includes('Failed to authenticate')) {
+				try {
+					await pb.collection('users').create({
+						email,
+						password,
+						passwordConfirm: password
+					});
+
+					// Kayıt sonrası giriş
+					await pb.collection('users').authWithPassword(email, password);
+					goto('/');
+				} catch (registerErr: any) {
+					error = 'Kayıt başarısız: ' + registerErr.message;
+				}
+			} else {
+				error = 'Giriş başarısız: ' + err.message;
+			}
 		}
 	}
 </script>
 
-<main class="flex min-h-screen flex-col items-center justify-center">
-	<div class="w-80 rounded bg-gray-800 p-6 shadow">
-		<h1 class="mb-4 text-center text-xl font-semibold">Giriş Yap</h1>
+<main class="flex flex-col items-center justify-center">
+	<h1 class="mb-2 h1">Tek Tıkla Gir</h1>
+	<p class="mb-10 opacity-50">Merak etme, hesabın yoksa otomatik oluşturacağım.</p>
 
-		<input
-			class="mb-3 w-full rounded bg-gray-700 p-2 text-white"
-			bind:value={email}
-			placeholder="E-posta"
-			type="email"
-		/>
+	<form class="w-full max-w-md space-y-4 p-4" on:submit|preventDefault={login}>
+		<fieldset class="space-y-4">
+			<!-- Input -->
+			<label class="label">
+				<span class="label-text">E‑posta</span>
+				<input class="input" type="email" placeholder="E‑posta" bind:value={email} />
+			</label>
 
-		<input
-			class="mb-3 w-full rounded bg-gray-700 p-2 text-white"
-			bind:value={password}
-			placeholder="Şifre"
-			type="password"
-		/>
+			<!-- Password -->
+			<label class="label">
+				<span class="label-text">Şifre</span>
+				<input class="input" type="password" placeholder="Şifre" bind:value={password} />
+			</label>
+		</fieldset>
 
-		<button on:click={login} class="w-full rounded bg-indigo-600 p-2">Giriş</button>
+		<fieldset class="flex justify-end">
+			<button type="submit" class="btn preset-outlined-surface-300-700">Giriş Yap</button>
+		</fieldset>
 
 		{#if error}
 			<p class="mt-2 text-sm text-red-400">{error}</p>
 		{/if}
-	</div>
+	</form>
 </main>

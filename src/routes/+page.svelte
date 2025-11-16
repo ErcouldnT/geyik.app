@@ -16,7 +16,6 @@
 		<p>Hoşgeldin</p>
 		<button on:click={logout} class="btn preset-filled-error-500">Çıkış Yap</button>
 	{:else}
-		<a class="underline" href="/auth/login">Giriş yap</a>
-		<a class="underline" href="/auth/register">Kayıt ol</a>
+		<a class="underline" href="/auth/login">Tek Tıkla Gir</a>
 	{/if}
 </main>
