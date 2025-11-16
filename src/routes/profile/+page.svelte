@@ -67,11 +67,11 @@
 			/>
 		</label>
 
-		<button on:click={updateProfile} class="mt-4 btn w-full preset-outlined-success-500">
+		<button on:click={updateProfile} class="mt-4 btn w-full preset-outlined-surface-300-700">
 			Güncelle
 		</button>
 
-		<button on:click={logout} class="mt-3 btn w-full preset-outlined-error-500">Çıkış Yap</button>
+		<button on:click={logout} class="mt-3 btn w-full preset-filled-error-500">Çıkış Yap</button>
 
 		{#if success}
 			<p class="mt-3 text-sm text-green-400">{success}</p>

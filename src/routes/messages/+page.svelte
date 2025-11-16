@@ -118,7 +118,7 @@
 	}
 </script>
 
-<main class="p-6 text-gray-100">
+<main class="mx-auto w-full max-w-lg p-6 text-gray-100">
 	<h1 class="mb-6 text-2xl font-bold">Arkadaşlar & Mesajlar</h1>
 
 	<!-- Kullanıcı Arama -->

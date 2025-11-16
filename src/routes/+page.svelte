@@ -11,9 +11,7 @@
 	}
 </script>
 
-<main
-	class="mx-auto flex w-full max-w-md flex-col items-center justify-center space-y-4 text-center"
->
+<main class="mx-auto flex w-full max-w-md flex-col items-center justify-center text-center">
 	<h1 class="mb-4 h1">Geyik</h1>
 	<p class="mb-10 opacity-50">Sohbet et, sunucular oluştur, dosya paylaş — hepsi tek yerde.</p>
 
