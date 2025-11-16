@@ -1,11 +1,33 @@
+version: "3.9"
+
 services:
   geyik:
     image: node:25-alpine
     container_name: geyik
+    restart: unless-stopped
     working_dir: /app
-    command: sh -c "git clone https://github.com/ErcouldnT/geyik.app.git && npm i && npm run dev:all"
+    command:
+      [
+        "sh",
+        "-c",
+        "apk add --no-cache git && git clone https://github.com/ErcouldnT/geyik.app.git /app && npm install && npm run dev",
+      ]
     ports:
       - "5173:5173"
+    depends_on:
+      - pocketbase
+    volumes:
+      - pb_migrations:/app/pb_migrations
+
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    container_name: pocketbase
+    restart: unless-stopped
+    ports:
       - "8090:8090"
     volumes:
-      - /DATA/AppData/geyik/pb_data:/app/pb_data
+      - pb_migrations:/pb/pb_migrations
+      - /DATA/AppData/geyik/pb_data:/pb/pb_data
+
+volumes:
+  pb_migrations:

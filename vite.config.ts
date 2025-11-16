@@ -7,6 +7,6 @@ export default defineConfig({
 	server: {
 		host: true,
 		port: 5173,
-		allowedHosts: ['https://geyik.erkut.dev']
+		allowedHosts: ['geyik.erkut.dev']
 	}
 });
