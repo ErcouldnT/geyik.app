@@ -1,0 +1,11 @@
+services:
+  geyik:
+    image: node:25-alpine
+    container_name: geyik
+    working_dir: /app
+    command: sh -c "git clone https://github.com/ErcouldnT/geyik.app.git && npm i && npm run dev:all"
+    ports:
+      - "5173:5173"
+      - "8090:8090"
+    volumes:
+      - /DATA/AppData/geyik/pb_data:/app/pb_data
