@@ -1,16 +1,14 @@
-version: "3.9"
-
 services:
   geyik:
     image: node:25-alpine
     container_name: geyik
     restart: unless-stopped
+    ports:
+      - "5173:5173"
     working_dir: /app
     volumes:
       - ./:/app
     command: ["sh", "-c", "npm install && npm run dev"]
-    ports:
-      - "5173:5173"
     depends_on:
       - pocketbase
 
@@ -23,7 +21,9 @@ services:
     volumes:
       - ./pb_migrations:/pb/pb_migrations
       - /DATA/AppData/geyik/pb_data:/pb/pb_data
-
-networks:
-  default:
-    driver: bridge
+    command:
+      [
+        "sh",
+        "-c",
+        "pocketbase migrate up --dir /pb/pb_migrations && pocketbase serve --dir /pb/pb_data",
+      ]
