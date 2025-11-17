@@ -47,7 +47,7 @@
 				<li class="rounded bg-gray-800 p-4 shadow">
 					{#if server.avatar}
 						<img
-							src={`http://127.0.0.1:8090/api/files/servers/${server.id}/${server.avatar}`}
+							src={`https://geyikdb.erkut.dev/api/files/servers/${server.id}/${server.avatar}`}
 							alt="Avatar"
 							class="mb-3 h-40 w-full rounded object-cover"
 						/>

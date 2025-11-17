@@ -42,7 +42,7 @@
 
 		{#if user?.avatar}
 			<img
-				src={`http://127.0.0.1:8090/api/files/users/${user.id}/${user.avatar}`}
+				src={`https://geyikdb.erkut.dev/api/files/users/${user.id}/${user.avatar}`}
 				alt="Avatar"
 				class="mx-auto mb-4 h-24 w-24 rounded-full object-cover"
 			/>
