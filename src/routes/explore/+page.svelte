@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { pb } from '$lib/pocketbase';
 	import { onMount } from 'svelte';
+	import { pb } from '$lib/pocketbase';
+	import { PB_URL } from '$lib/config';
+
 	let servers = [];
 	let searchTerm = '';
 
@@ -47,7 +49,7 @@
 				<li class="rounded bg-gray-800 p-4 shadow">
 					{#if server.avatar}
 						<img
-							src={`https://geyikdb.erkut.dev/api/files/servers/${server.id}/${server.avatar}`}
+							src={`${PB_URL}/api/files/servers/${server.id}/${server.avatar}`}
 							alt="Avatar"
 							class="mb-3 h-40 w-full rounded object-cover"
 						/>

@@ -5,7 +5,6 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"db": "npx pocketbase serve --dir ./pb_data",
 		"dev:all": "concurrently \"npm run db\" \"npm run dev\"",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -15,7 +14,8 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
 		"test:e2e": "playwright test",
-		"test": "npm run test:e2e"
+		"test": "npm run test:e2e",
+		"db": "npx pocketbase serve --dir ./pb_data"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.4.0",

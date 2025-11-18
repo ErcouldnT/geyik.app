@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { pb } from '$lib/pocketbase';
-	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
+	import { pb } from '$lib/pocketbase';
+	import { PB_URL } from '$lib/config';
 
 	let user = pb.authStore.model;
 	let username = user?.username || '';
@@ -42,7 +43,7 @@
 
 		{#if user?.avatar}
 			<img
-				src={`https://geyikdb.erkut.dev/api/files/users/${user.id}/${user.avatar}`}
+				src={`${PB_URL}/api/files/users/${user.id}/${user.avatar}`}
 				alt="Avatar"
 				class="mx-auto mb-4 h-24 w-24 rounded-full object-cover"
 			/>
